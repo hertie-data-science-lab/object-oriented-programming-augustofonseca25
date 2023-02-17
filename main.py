@@ -9,17 +9,19 @@ import random
 
 from River import River
 
-river = River(10)
+river = River(10) # create the object river - length 10
 #river.initialize()
-river.display()
+river.display() # display the elements randomly allocated
 
-river.list_species[1].move(self,1,1)
 
-timer_interval = 10
+timer_interval = 10 # an interval to rerun the animals movements
 
-#random.randrange(0,2)
-
-if river.count_none_positions() != 0 or river.count_fish_elements() !=0:
-    river.movements()
-    river.display()
-    time.sleep(timer_interval)
+'''
+This while control the repeated execution of the movement loop.
+It will stop only if there is no empty spots AND if there is no fishes.
+I made this way because I understood the bears will eat all fishes in the river.
+'''
+while river.count_none_positions() != 0 or river.count_fish_elements() !=0:
+    river.movements() # call the function to move one animal randomly assigned
+    river.display() # show us the partial result
+    time.sleep(timer_interval) # interval to run again

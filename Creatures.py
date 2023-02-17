@@ -48,12 +48,3 @@ class Fish(Creature):
     def __init__(self):
         #super().__init__()
         self.title = 'fish'
-
-
-Sbear = Bear()
-Sfish = Fish()
-# #isinstance((river.animal_specie2[2]), Bear)
-# #Sbear.type()
-#
-# print(Sbear.__class__.__name__)
-Sbear.move(1,1)
