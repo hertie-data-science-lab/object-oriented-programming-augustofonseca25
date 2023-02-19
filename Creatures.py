@@ -11,9 +11,14 @@ from random import random, randint
 
 class Creature(metaclass=ABCMeta):
 
-    def __init__(self, position):
-        self.__position__ = position
+    def __init__(self):
         pass
+
+
+    # def __init__(self, position):
+    #     self.__position__ = position
+    #     pass
+
 
     def move(self, actual_position, choices): # function to check what will be the decision about the movement. Returns the new position
         if choices == 0: # If the animal can only move down or stay
@@ -39,12 +44,14 @@ class Creature(metaclass=ABCMeta):
 class Bear(Creature):
 
     def __init__(self):
-        #super().__init__()
+        super().__init__()
         self.title = 'bear'
+        pass
 
 
 class Fish(Creature):
 
     def __init__(self):
-        #super().__init__()
+        super().__init__()
         self.title = 'fish'
+        pass

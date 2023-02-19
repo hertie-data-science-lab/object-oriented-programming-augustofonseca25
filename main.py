@@ -14,7 +14,7 @@ river = River(10) # create the object river - length 10
 river.display() # display the elements randomly allocated
 
 
-timer_interval = 10 # an interval to rerun the animals movements
+timer_interval = 1 # an interval to rerun the animals movements
 
 '''
 This while control the repeated execution of the movement loop.

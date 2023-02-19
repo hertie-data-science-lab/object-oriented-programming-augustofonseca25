@@ -6,7 +6,8 @@ Created on Sun Feb 12 18:04:03 2023
 """
 import numpy as np
 
-from Creatures import Bear, Fish
+#from Creatures import Creature, Bear, Fish
+from Creatures import *
 from random import random, randint
 
 
@@ -15,7 +16,7 @@ class River:
     def __init__(self, n_room):
 
         self.__n_room = n_room
-        self.list_species = np.random.choice([Bear, Fish, None], self.__n_room).tolist()
+        self.list_species = np.random.choice([Bear(), Fish(), None], self.__n_room).tolist()
 
     def __get_animal_specie__(self, position): # gets an element at a specific position in the river
         '''Return the animal specie in a specific position in the river'''
@@ -62,10 +63,10 @@ class River:
             # Call the method to define the conflicts between the animals and effectivelly move them
             self.define_conflicts(river_pos_choice, new_position)
 
-''' 
-Based on the output of the method movement, the next method "define_conflicts" evaluate 
-which animal will survive and move in each case. It`s the function that effectively move the animals.
-'''
+    '''
+    Based on the output of the method movement, the next method "define_conflicts" evaluate 
+    which animal will survive and move in each case. It`s the function that effectively move the animals.
+    '''
     def define_conflicts(self, actual_position, new_position):
 
         animal_to_move = self.__get_animal_specie__(actual_position) # Check what`s the animal which will move
@@ -74,16 +75,16 @@ which animal will survive and move in each case. It`s the function that effectiv
         if new_position_content == None: # if the position is empty
             self.__set_animal_specie__(new_position, animal_to_move) # move the animal to the new position
             self.__set_animal_specie__(actual_position, None) #Change the old position to empty
-        elif new_position_content == Bear: # If the new position is occupied by a bear
-            if animal_to_move == Fish: # If the animal that wants to move is a fish
+        elif new_position_content == Bear(): # If the new position is occupied by a bear
+            if animal_to_move == Fish(): # If the animal that wants to move is a fish
                 self.__set_animal_specie__(actual_position, None)  # The fish dies. Set the position to empty
-            elif animal_to_move == Bear and self.count_none_positions != 0: # If the animal that wants to move is also a bear and there is an empty spot
+            elif animal_to_move == Bear() and self.count_none_positions != 0: # If the animal that wants to move is also a bear and there is an empty spot
                 self.__set_animal_specie__(self.random_empty_spot, animal_to_move) # Assign a new animal to an empty spot
-        elif new_position_content == Fish:  # If the new position is occupied by a fish
-            if animal_to_move == Bear: # If the animal that wants to move is a bear
+        elif new_position_content == Fish():  # If the new position is occupied by a fish
+            if animal_to_move == Bear(): # If the animal that wants to move is a bear
                 self.__set_animal_specie__(new_position, animal_to_move)  # The fish dies. The bear moves to the new position
                 self.__set_animal_specie__(actual_position, None)  # Change the bear`s old position to empty
-            elif animal_to_move == Fish and self.count_none_positions != 0: # If the animal that wants to move is also a fish and there is an empty spot
+            elif animal_to_move == Fish() and self.count_none_positions != 0: # If the animal that wants to move is also a fish and there is an empty spot
                 self.__set_animal_specie__(self.random_empty_spot, animal_to_move)  # Assign a new animal to an empty spot
 
 
